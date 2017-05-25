@@ -13,30 +13,23 @@ public class JdbcUserInput {
 
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/raghu","root","syamsiva");
-		java.sql.Statement stmt = con.createStatement();		
+		//java.sql.Statement stmt = con.createStatement();
+
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter your id: ");
 		String id = scanner.nextLine();
 		System.out.print("Enter your  name: ");
 		String name = scanner.nextLine();
-		System.out.print("Enter your marks: ");
-		String marks = scanner.nextLine();
-		String sql = "insert into emp "+ " (id, name, marks)" + " values (?, ?, ?)";
-
-		 stmt = con.prepareStatement(sql);
-
-		// set param values
-		((PreparedStatement) stmt).setString(1, id);
-		((PreparedStatement) stmt).setString(2, name);
-		((PreparedStatement) stmt).setString(3, marks);
+//		System.out.print("Enter your marks: ");
+//		String marks = scanner.nextLine();
+		String sql = "insert into student "+ " (id, name)" + " values (?, ?)";
+		PreparedStatement stmt = con.prepareStatement(sql);
 		
-
-		// 3. Execute SQL query
-		ResultSet rs= stmt.executeQuery(sql);
-
-	con.close();
-		// TODO Auto-generated method stub
-
+		((PreparedStatement)stmt).setString(1, id);
+		((PreparedStatement)stmt).setString(2, name);
+		
+		int c=stmt.executeUpdate();
+		System.out.println("rows affected "+c );
+		con.close();
 	}
-
 }
