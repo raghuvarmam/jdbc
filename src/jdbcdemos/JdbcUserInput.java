@@ -17,16 +17,16 @@ public class JdbcUserInput {
 
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter your id: ");
-		String id = scanner.nextLine();
+		String rnum = scanner.nextLine();
 		System.out.print("Enter your  name: ");
-		String name = scanner.nextLine();
+		String sname = scanner.nextLine();
 //		System.out.print("Enter your marks: ");
 //		String marks = scanner.nextLine();
-		String sql = "insert into student "+ " (id, name)" + " values (?, ?)";
+		String sql = "insert into student "+ " (rnum, sname)" + " values (?, ?)";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		
-		((PreparedStatement)stmt).setString(1, id);
-		((PreparedStatement)stmt).setString(2, name);
+		stmt.setString(1, rnum);
+		((PreparedStatement)stmt).setString(2, sname);
 		
 		int c=stmt.executeUpdate();
 		System.out.println("rows affected "+c );
